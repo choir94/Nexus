@@ -18,6 +18,9 @@ Setelah itu, instal beberapa dependensi yang diperlukan untuk kompilasi dan inst
 ```bash
 sudo apt install build-essential pkg-config libssl-dev git-all -y
 ```
+```bash
+sudo apt update && sudo apt install -y protobuf-compiler && protoc --version && cargo build --release
+```
 ## 3. Instal Nexus CLI
 Gunakan perintah berikut untuk mengunduh dan menginstal Nexus CLI:
 ```bash

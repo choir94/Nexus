@@ -23,7 +23,7 @@ Gunakan perintah berikut untuk mengunduh dan menginstal Nexus CLI:
 ```bash
 curl https://cli.nexus.xyz/ | sh
 ```
-Tunggu instalasi
+Tunggu instalasi, CTRL+C 
 ## 4. Ubah Prover ID
 Secara default, Nexus akan menghasilkan Prover ID secara acak. Jika ingin menggantinya dengan Prover ID milikmu
 

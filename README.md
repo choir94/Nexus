@@ -63,4 +63,5 @@ https://trakteer.id/AirdropNode/tip
 
 ## Join Airdrop Node:  
 
-[Grup Telegram AirdropNode](https://t.me/airdrop_node)
+[Grup Telegram Airdrop Node]
+(https://t.me/airdrop_node)

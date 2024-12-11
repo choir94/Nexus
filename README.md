@@ -61,7 +61,7 @@ Evm wallet
 ```
 https://trakteer.id/AirdropNode/tip
 
-## Join Airdrop Node:  
+## Join Telegram Airdrop Node:  
 
-[Grup Telegram Airdrop Node]
+[Telegram Airdrop Node]
 (https://t.me/airdrop_node)

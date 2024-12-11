@@ -58,11 +58,7 @@ curl https://cli.nexus.xyz/ | sh
 ```
 ## Done
 ## Support Airdrop Node
-Evm wallet
 
-```bash
-0x59E997287C18A46a53269A4C599FBf2d2EB1DB31
-```
 https://trakteer.id/AirdropNode/tip
 
 ## Join Telegram Airdrop Node:  

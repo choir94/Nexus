@@ -19,9 +19,6 @@ Setelah itu, instal beberapa dependensi yang diperlukan untuk kompilasi dan inst
 sudo apt install build-essential pkg-config libssl-dev git-all -y
 ```
 ```bash
-sudo apt update && sudo apt install -y protobuf-compiler && protoc --version && cargo build --release
-```
-```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 ```bash

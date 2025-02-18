@@ -40,7 +40,7 @@ curl https://cli.nexus.xyz/ | sh
 Masukkan Node ID
 
 Untuk menemukan node-id, buka https://app.nexus.xyz/nodes
-Klik Add Node, klik Add CLI Nodedan salin node-iddan tempel di terminal
+Klik Add Node, klik Add CLI Nodedan salin node-id dan tempel di terminal
 
 ## Done
 

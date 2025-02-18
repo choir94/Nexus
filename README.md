@@ -57,9 +57,6 @@ Jalankan ulang Nexus CLI dengan perintah berikut:
 curl https://cli.nexus.xyz/ | sh
 ```
 ## Done
-## Support Airdrop Node
-
-https://trakteer.id/AirdropNode/tip
 
 ## Join Telegram Airdrop Node:  
 

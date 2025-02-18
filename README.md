@@ -22,6 +22,9 @@ sudo apt install build-essential pkg-config libssl-dev git-all -y
 sudo apt update && sudo apt install -y protobuf-compiler && protoc --version && cargo build --release
 ```
 ```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+```bash
 source $HOME/.cargo/env
 export PATH="$HOME/.cargo/bin:$PATH"
 ```

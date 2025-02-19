@@ -33,7 +33,6 @@ curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v25.2/pro
 unzip protoc-25.2-linux-x86_64.zip -d $HOME/.local
 export PATH="$HOME/.local/bin:$PATH"
 ```
-```bash
 
 ## 3. Jalankan Nexus di Sesi Screen
 Untuk menjalankan Nexus di latar belakang agar tetap berjalan meskipun kamu keluar dari terminal, gunakan screen:

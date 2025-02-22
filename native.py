@@ -48,17 +48,8 @@ private_key = input("Masukkan private key Anda: ").strip()
 recipient_addresses = input("Masukkan alamat penerima (pisahkan dengan koma jika lebih dari satu): ").strip().split(',')
 recipient_addresses = [addr.strip() for addr in recipient_addresses]
 
-# Ask the user for the amount to send per recipient
-amount_input = input("Masukkan jumlah token per penerima: ").strip()
-try:
-    amount = Web3.to_wei(float(amount_input), 'ether')
-except ValueError:
-    print(Fore.RED + "Jumlah tidak valid. Harap masukkan angka yang benar.")
-    exit()
-
 # Save the details to a file
 with open("transaction_details.txt", "w") as file:
-    file.write(f"Amount per recipient: {Web3.from_wei(amount, 'ether')} {SYMBOL}\n")
     for recipient in recipient_addresses:
         file.write(f"Recipient Address: {recipient}\n")
 
@@ -67,24 +58,25 @@ def send_native_token(senderkey, recipients, amount, web3):
         sender = web3.eth.account.from_key(senderkey).address
         nonce = web3.eth.get_transaction_count(sender)
         gas_price = web3.eth.gas_price
+        amount_wei = Web3.to_wei(1, 'ether')
         
         for recipient in recipients:
             transaction = {
                 'chainId': CHAIN_ID,
                 'to': recipient,
-                'value': amount,
+                'value': amount_wei,
                 'gas': 21000,
                 'gasPrice': gas_price,
                 'nonce': nonce
             }
             signed_txn = web3.eth.account.sign_transaction(transaction, senderkey)
-            print(Fore.CYAN + f'Memproses pengiriman {Web3.from_wei(amount, "ether")} {SYMBOL} ke alamat: {recipient} ...')
+            print(Fore.CYAN + f'Memproses pengiriman {Web3.from_wei(amount_wei, "ether")} {SYMBOL} ke alamat: {recipient} ...')
             
             tx_hash = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
             txid = web3.to_hex(tx_hash)
             web3.eth.wait_for_transaction_receipt(tx_hash)
             
-            print(Fore.GREEN + f'Pengiriman {Web3.from_wei(amount, "ether")} {SYMBOL} ke {recipient} berhasil!')
+            print(Fore.GREEN + f'Pengiriman {Web3.from_wei(amount_wei, "ether")} {SYMBOL} ke {recipient} berhasil!')
             print(Fore.GREEN + f'TX-ID : {txid}')
             
             nonce += 1  # Increment nonce for each transaction
@@ -93,4 +85,4 @@ def send_native_token(senderkey, recipients, amount, web3):
         print(Fore.RED + f"Gagal mengirim token: {e}")
 
 # Perform the transfer
-send_native_token(private_key, recipient_addresses, amount, web3)
+send_native_token(private_key, recipient_addresses, 1, web3)

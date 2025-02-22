@@ -44,11 +44,6 @@ if web3 is None:
 # Ask the user for the private key
 private_key = input("Masukkan private key Anda: ").strip()
 
-# Derive the sender address from the private key
-account = web3.eth.account.from_key(private_key)
-sender_address = account.address
-print(Fore.CYAN + f"Sender Address: {sender_address}")
-
 # Ask the user for the recipient addresses
 recipient_addresses = input("Masukkan alamat penerima (pisahkan dengan koma jika lebih dari satu): ").strip().split(',')
 recipient_addresses = [addr.strip() for addr in recipient_addresses]
@@ -63,10 +58,9 @@ except ValueError:
 
 # Save the details to a file
 with open("transaction_details.txt", "w") as file:
-    file.write(f"Sender Address: {sender_address}\n")
+    file.write(f"Amount per recipient: {Web3.from_wei(amount, 'ether')} {SYMBOL}\n")
     for recipient in recipient_addresses:
         file.write(f"Recipient Address: {recipient}\n")
-    file.write(f"Amount per recipient: {Web3.from_wei(amount, 'ether')} {SYMBOL}\n")
 
 def send_native_token(senderkey, recipients, amount, web3):
     try:
@@ -94,6 +88,7 @@ def send_native_token(senderkey, recipients, amount, web3):
             print(Fore.GREEN + f'TX-ID : {txid}')
             
             nonce += 1  # Increment nonce for each transaction
+            time.sleep(60)  # Add 60 seconds delay between transactions
     except Exception as e:
         print(Fore.RED + f"Gagal mengirim token: {e}")
 

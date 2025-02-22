@@ -20,19 +20,16 @@ cd "$SCRIPT_DIR" || exit
 install_dependencies() {
     echo -e "${YELLOW}Menginstal dependensi...${RESET}"
 
-    # Inisialisasi Git jika belum ada
     if [ ! -d ".git" ]; then
         echo -e "${YELLOW}Menginisialisasi repository Git...${RESET}"
         git init
     fi
 
-    # Instal Foundry jika belum terinstal
     if ! command -v forge &> /dev/null; then
         echo -e "${YELLOW}Foundry belum terinstal. Menginstal Foundry...${RESET}"
         source <(wget -O - https://raw.githubusercontent.com/choir94/Airdropguide/refs/heads/main/Foundry.sh)
     fi
 
-    # Instal OpenZeppelin Contracts jika belum ada
     if [ ! -d "$SCRIPT_DIR/lib/openzeppelin-contracts" ]; then
         echo -e "${YELLOW}Menginstal OpenZeppelin Contracts...${RESET}"
         git clone https://github.com/OpenZeppelin/openzeppelin-contracts.git "$SCRIPT_DIR/lib/openzeppelin-contracts"
@@ -44,7 +41,6 @@ install_dependencies() {
 # Fungsi input detail yang diperlukan
 input_required_details() {
     echo -e "${YELLOW}-----------------------------------${RESET}"
-
     [ -f "$SCRIPT_DIR/token_deployment/.env" ] && rm "$SCRIPT_DIR/token_deployment/.env"
 
     read -p "Masukkan Nama Token (default: AirdropNode): " TOKEN_NAME
@@ -58,10 +54,10 @@ input_required_details() {
 
     read -p "Masukkan Private Key Anda: " PRIVATE_KEY
 
-    read -p "Masukkan RPC URL (default: https://testnet-rpc.monad.xyz): " RPC_URL
-    RPC_URL="${RPC_URL:-https://rpc.nexus.xyz/http}"
+    read -p "Masukkan RPC URL (default: https://rpc.nexus.xyz/): " RPC_URL
+    RPC_URL="${RPC_URL:-https://rpc.nexus.xyz/}"
 
-    read -p "Masukkan Explorer URL (default: https://testnet.monadexplorer.com/): " EXPLORER_URL
+    read -p "Masukkan Explorer URL (default: https://explorer.nexus.xyz/): " EXPLORER_URL
     EXPLORER_URL="${EXPLORER_URL:-https://explorer.nexus.xyz/}"
 
     mkdir -p "$SCRIPT_DIR/token_deployment"
@@ -87,26 +83,26 @@ EOL
     echo -e "${YELLOW}Data berhasil disimpan dan konfigurasi diperbarui.${RESET}"
 }
 
-# Fungsi untuk verifikasi kontrak di Sourcify
+# Fungsi verifikasi kontrak di Blockscout
 verify_contract() {
     local contract_address="$1"
-    echo -e "${YELLOW}Memulai verifikasi kontrak di Sourcify untuk: $contract_address${RESET}"
+    echo -e "${YELLOW}Memulai verifikasi kontrak di Blockscout untuk: $contract_address${RESET}"
 
     forge verify-contract \
       --rpc-url "$RPC_URL" \
-      --verifier sourcify \
-      --verifier-url 'https://sourcify-api-monad.blockvision.org' \
+      --verifier blockscout \
+      --verifier-url "$EXPLORER_URL/api/" \
       "$contract_address" \
       "$SCRIPT_DIR/src/AirdropNode.sol:AirdropNode"
 
     if [[ $? -eq 0 ]]; then
-        echo -e "${GREEN}Kontrak berhasil diverifikasi di Sourcify!${RESET}"
+        echo -e "${GREEN}Kontrak berhasil diverifikasi di Blockscout!${RESET}"
     else
         echo -e "${RED}Verifikasi kontrak gagal untuk alamat $contract_address.${RESET}"
     fi
 }
 
-# Fungsi untuk deploy kontrak
+# Fungsi deploy kontrak
 deploy_contract() {
     echo -e "${YELLOW}-----------------------------------${RESET}"
     source "$SCRIPT_DIR/token_deployment/.env"

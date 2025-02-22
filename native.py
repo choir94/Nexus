@@ -8,7 +8,7 @@ import time
 init(autoreset=True)
 
 # Nexus Token Configuration
-RPC_URL = "https://rpc.nexus.xyz"
+RPC_URL = "https://rpc.nexus.xyz/http"
 CHAIN_ID = 392
 DECIMALS = 18  # Set to the token's decimals (commonly 18 for most tokens)
 SYMBOL = "NEX"  # Native token symbol

@@ -7,11 +7,11 @@ import time
 # Initialize colorama
 init(autoreset=True)
 
-# Nexus Token Configuration
-RPC_URL = "https://rpc.nexus.xyz/http"
-CHAIN_ID = 392
+# Monad Token Configuration
+RPC_URL = "https://rpc.monad.xyz"
+CHAIN_ID = 80085
 DECIMALS = 18  # Set to the token's decimals (commonly 18 for most tokens)
-SYMBOL = "NEX"  # Native token symbol
+SYMBOL = "MON"  # Native token symbol
 
 # Check if the RPC URL is valid
 def check_rpc_url(rpc_url, retries=3):

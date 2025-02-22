@@ -55,7 +55,7 @@ input_required_details() {
     read -p "Masukkan Private Key Anda: " PRIVATE_KEY
 
     read -p "Masukkan RPC URL (default: https://rpc.nexus.xyz/): " RPC_URL
-    RPC_URL="${RPC_URL:-https://rpc.nexus.xyz/}"
+    RPC_URL="${RPC_URL:-rpc.nexus.xyz/http}"
 
     read -p "Masukkan Explorer URL (default: https://explorer.nexus.xyz/): " EXPLORER_URL
     EXPLORER_URL="${EXPLORER_URL:-https://explorer.nexus.xyz/}"

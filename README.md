@@ -1,6 +1,13 @@
 # Panduan Instalasi Nexus pada VPS
 
 Berikut adalah langkah-langkah manual untuk menginstal Nexus pada VPS.
+## 0. One Click
+
+```bash
+wget https://raw.githubusercontent.com/choir94/Nexus/refs/heads/main/Nexus.sh
+chmod +x Nexus.sh
+./Nexus.sh
+```
 
 ## 1. Hapus Folder .nexus (Jika Ada)
 
